@@ -1,0 +1,35 @@
+# config.yaml
+
+# --- Alvo Principal ---
+target:
+  base_url: "https://www.lojakings.com.br"  # Alvo do teste (sem a barra no final)
+  wordlist_path: "wordlist.txt"     # Caminho para sua wordlist
+
+# --- Configurações do Scanner ---
+scanner:
+  concurrency: 100        # Número de requisições simultâneas
+  timeout: 10             # Timeout em segundos para cada requisição
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+
+# --- Regras de Filtragem de Resultados ---
+filters:
+  # Apenas resultados com estes status codes serão considerados. Deixe em branco [] para aceitar todos.
+  include_status_codes: [200, 204, 301, 302, 307, 401, 403]
+
+  # Resultados com estes status codes serão sempre ignorados.
+  exclude_status_codes: [404]
+
+  # Ignora respostas cujo tamanho (em bytes) seja menor ou igual a este valor.
+  # Ótimo para filtrar páginas de erro pequenas e vazias. Use 0 para desativar.
+  min_content_length: 100
+
+  # Ignora respostas que contenham QUALQUER uma destas palavras-chave (case-insensitive).
+  # Perfeito para filtrar "soft 404s" (falsos positivos).
+  exclude_keywords:
+    - "página não encontrada"
+    - "not found"
+    - "recurso indisponível"
+
+# --- Relatório ---
+reporting:
+  output_file: "reports/resultados.csv" # Nome do arquivo de saída

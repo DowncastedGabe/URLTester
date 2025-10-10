@@ -1,0 +1,5 @@
+aiohttp
+typer[all]
+PyYAML
+tqdm
+rich
